@@ -51,7 +51,7 @@ define(
                 error: function (data) {
                     // even id successful we are here
                     if (data.status == 200) {
-                        that.alert("Connected", "Successfully connected", 'success');
+                        that.alert("Connected", "Successfully connected user", 'success');
                         console.log("Session ID is " + data.responseText)
                         localStorage['pa.session'] = data.responseText;
                         localStorage['pa.login'] = creds['user'];
@@ -297,8 +297,6 @@ define(
         },
         validate: function (jobXml, jobModel) {
             if (!localStorage['pa.session']) return;
-
-            if (jobModel.getTasksCount() == 0) return;
 
             var that = this;
             return that.send_multipart_request(config.restApiUrl + "/validate", jobXml, {}, null, false);
